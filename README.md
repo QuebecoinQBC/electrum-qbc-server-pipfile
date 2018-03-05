@@ -2,7 +2,7 @@ Electrum-Quebecoin-server for the Electrum Quebecoin client
 =========================================
 
   * Author: Thomas Voegtlin (ThomasV on the bitcointalk forum)
-  * Dash codebase port Authors: ELM4Ever, Propulsion
+  * Quebecoin codebase port Authors: ELM4Ever, Propulsion
   * Quebecoin codebase port Authors: GHonyme
   * Language: Python
 
@@ -13,7 +13,7 @@ Features
     described by Alan Reiner (see the 'ultimate blockchain
     compression' thread in the Bitcointalk forum)
 
-  * The server requires dashd, leveldb, x11_hash and plyvel
+  * The server requires quebecoind, leveldb, x11_hash and plyvel
 
   * The server code is open source. Anyone can run a server, removing
     single points of failure concerns.

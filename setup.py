@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name="electrum-dash-server",
+    name="electrum-quebecoin-server",
     version="1.0",
     scripts=['run_electrum_quebecoin_server','electrum-quebecoin-server'],
     install_requires=['plyvel','jsonrpclib', 'irc >= 11, <=14.0', 'x11_hash'],
