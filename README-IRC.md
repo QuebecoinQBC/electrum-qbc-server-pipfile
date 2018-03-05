@@ -1,3 +1,6 @@
+## Not use in Quebecoin - still there from DASH fork - to be cleaned
+
+
 IRC is used by Electrum Dash server to find 'peers' - other Electrum Dash servers. The
 current list can be seen by running:
 
