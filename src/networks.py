@@ -1,6 +1,6 @@
 # Main network and testnet3 definitions
 
-# Dash src/chainparams.cpp
+# Quebecoin src/chainparams.cpp
 params = {
     'quebecoin_main': {
         'pubkey_address': 76, #L120
