@@ -12,7 +12,7 @@ fi
 source_dir=$(cd "$(dirname "${BASH_SOURCE[0]}" )"; pwd)
 
 
-electrum_config="/etc/electrum-dash.conf"
+electrum_config="/etc/electrum-quebecoin.conf"
 function read_config()
 {
     text=$1
@@ -26,7 +26,7 @@ function write_config()
 # create config file
 if [ ! -f $electrum_config ]; then
     echo "Creating config file"
-    cp $source_dir"/electrum-dash.conf.sample" $electrum_config
+    cp $source_dir"/electrum-quebecoin.conf.sample" $electrum_config
 fi
 
 
@@ -53,7 +53,7 @@ fi
 
 
 # read path from config
-default_path="/var/electrum-dash-server"
+default_path="/var/electrum-quebecoin-server"
 path=$(read_config "path")
 if ! [ "$path" ]; then
     read -p "Path for database (default: $default_path) " -r
@@ -66,7 +66,7 @@ if ! [ "$path" ]; then
 fi
 
 # read path from config
-default_logfile="/var/log/electrum-dash.log"
+default_logfile="/var/log/electrum-quebecoin.log"
 logfile=$(read_config "logfile")
 if ! [ "$logfile" ]; then
     read -p "Path of logfile (default: $default_logfile) " -r
@@ -86,17 +86,19 @@ fi
 
 
 # download database
-if [ ! -d $path ]; then
-    echo "Database not found in $path."
-    read -p "Do you want to download it from the Electrum foundry to $path ? " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-	mkdir -p $path
-	wget -O - "http://foundry.electrum.org/leveldb-dump/electrum-fulltree-100-latest.tar.gz" | tar --extract --gunzip --strip-components 1 --directory $path --file -
-    fi
-fi
+# Useless for Quebecoin - No public database yet
+#if [ ! -d $path ]; then
+#    echo "Database not found in $path."
+#    read -p "Do you want to download it from the Electrum foundry to $path ? " -n 1 -r
+#    echo
+#    if [[ $REPLY =~ ^[Yy]$ ]]; then
+#	mkdir -p $path
+#	wget -O - "http://foundry.electrum.org/leveldb-dump/electrum-fulltree-100-latest.tar.gz" | tar --extract --gunzip --strip-components 1 --directory $path --file -
+#    fi
+#fi
 
 # set owner
+mkdir -p $path
 chown -R $user:$user $path
 
 
@@ -108,16 +110,16 @@ fi
 chown $user:$user $logfile
 
 
-dashd_user=$(read_config "dashd_user")
-if ! [ "$dashd_user" ]; then
-    read -p "rpcuser (from your dash.conf file): " -r
-    write_config "dashd_user" $REPLY
+quebecoind_user=$(read_config "quebecoind_user")
+if ! [ "$quebecoind_user" ]; then
+    read -p "rpcuser (from your quebecoin.conf file): " -r
+    write_config "quebecoind_user" $REPLY
 fi
 
-dashd_password=$(read_config "dashd_password")
-if ! [ "$dashd_password" ]; then
-    read -p "rpcpassword (from your dash.conf file): " -r
-    write_config "dashd_password" $REPLY
+quebecoind_password=$(read_config "quebecoind_password")
+if ! [ "$quebecoind_password" ]; then
+    read -p "rpcpassword (from your quebecoin.conf file): " -r
+    write_config "quebecoind_password" $REPLY
 fi
 
 
