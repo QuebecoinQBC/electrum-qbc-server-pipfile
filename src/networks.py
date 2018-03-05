@@ -2,12 +2,12 @@
 
 # Dash src/chainparams.cpp
 params = {
-    'dash_main': {
+    'quebecoin_main': {
         'pubkey_address': 76, #L120
         'script_address': 16, #L122
-        'genesis_hash': '00000ffd590b1485b3caadc19b22e6379c733355108f107a430458cdf3407ab6' #L110
+        'genesis_hash': '00000948015ca05a2197f8f676476c9dbc11de07c87e1a46f2331ea10f33087d' #L110
     },
-    'dash_test': {
+    'quebecoin_test': {
         'pubkey_address': 140, #L220
         'script_address': 19, #L222
         'genesis_hash': '00000bafbc94add76cb75e2ec92894837288a481e5c005f6563d91623bf8bc2c' #L210
