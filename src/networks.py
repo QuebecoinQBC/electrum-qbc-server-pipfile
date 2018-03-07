@@ -3,8 +3,8 @@
 # Quebecoin src/chainparams.cpp
 params = {
     'quebecoin_main': {
-        'pubkey_address': 76, #L120
-        'script_address': 16, #L122
+        'pubkey_address': 58, #L120
+        'script_address': 5, #L122
         'genesis_hash': '00000948015ca05a2197f8f676476c9dbc11de07c87e1a46f2331ea10f33087d' #L110
     },
     'quebecoin_test': {
