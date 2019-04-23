@@ -20,6 +20,8 @@
 # ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+from gevent import monkey;
+monkey.patch_all()
 
 import argparse
 import ConfigParser
@@ -47,11 +49,6 @@ logging.basicConfig()
 
 if sys.maxsize <= 2**32:
     print "Warning: it looks like you are using a 32bit system. You may experience crashes caused by mmap"
-
-if os.getuid() == 0:
-    print "Do not run this program as root!"
-    print "Run the install script to create a non-privileged user."
-    sys.exit()
 
 def attempt_read_config(config, filename):
     try:
@@ -104,11 +101,11 @@ def create_config(filename=None):
 
     config.add_section('leveldb')
     config.set('leveldb', 'path', '/dev/shm/electrum_db')
-    config.set('leveldb', 'pruning_limit', '100')
-    config.set('leveldb', 'reorg_limit', '100')
-    config.set('leveldb', 'utxo_cache', str(64*1024*1024))
-    config.set('leveldb', 'hist_cache', str(128*1024*1024))
-    config.set('leveldb', 'addr_cache', str(16*1024*1024))
+    config.set('leveldb', 'pruning_limit', '10000')
+    config.set('leveldb', 'reorg_limit', '10000')
+    config.set('leveldb', 'utxo_cache', str(128*1024*1024))
+    config.set('leveldb', 'hist_cache', str(256*1024*1024))
+    config.set('leveldb', 'addr_cache', str(32*1024*1024))
     config.set('leveldb', 'profiler', 'no')
 
     # set network parameters

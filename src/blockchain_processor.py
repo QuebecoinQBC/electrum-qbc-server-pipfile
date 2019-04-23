@@ -23,6 +23,7 @@
 
 import hashlib
 from json import dumps, load
+import gevent
 import os
 from Queue import Queue
 import random
@@ -114,7 +115,7 @@ class BlockchainProcessor(Processor):
             if self.shared.paused():
                 print_log("quebecoind is responding")
                 self.shared.unpause()
-            time.sleep(10)
+            gevent.sleep(10)
 
 
     def set_time(self):
@@ -147,7 +148,7 @@ class BlockchainProcessor(Processor):
 
     def wait_on_quebecoind(self):
         self.shared.pause()
-        time.sleep(10)
+        gevent.sleep(10)
         if self.shared.stopped():
             # this will end the thread
             raise BaseException()

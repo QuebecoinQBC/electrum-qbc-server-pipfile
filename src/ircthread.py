@@ -20,7 +20,7 @@
 # ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
+import gevent
 import re
 import time
 import socket
@@ -134,12 +134,12 @@ class IrcThread(threading.Thread):
                 continue
             #logger.info("who: "+ s)
             connection.who(s)
-            time.sleep(1)
+            gevent.sleep(1)
 
     def run(self):
 
         while self.processor.shared.paused():
-            time.sleep(1)
+            gevent.sleep(1)
 
         self.ircname = self.host + ' ' + self.getname()
         # avoid UnicodeDecodeError using LenientDecodingLineBuffer
@@ -158,7 +158,7 @@ class IrcThread(threading.Thread):
                 c = client.server().connect('irc.freenode.net', 6667, self.nick, self.password, ircname=self.ircname) 
             except irc.client.ServerConnectionError:
                 logger.error('irc', exc_info=True)
-                time.sleep(10)
+                gevent.sleep(10)
                 continue
 
             c.add_global_handler("welcome", self.on_connect)
@@ -175,7 +175,7 @@ class IrcThread(threading.Thread):
                 client.process_forever()
             except BaseException as e:
                 logger.error('irc', exc_info=True)
-                time.sleep(10)
+                gevent.sleep(10)
                 continue
 
         logger.info("quitting IRC")

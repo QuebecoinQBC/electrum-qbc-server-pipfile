@@ -4,10 +4,9 @@ setup(
     name="electrum-quebecoin-server",
     version="1.0",
     scripts=['run_electrum_quebecoin_server','electrum-quebecoin-server'],
-    install_requires=['plyvel','jsonrpclib', 'irc >= 11, <=14.0', 'x11_hash'],
     package_dir={
         'electrumserver':'src'
-        },
+    },
     py_modules=[
         'electrumserver.__init__',
         'electrumserver.utils',
